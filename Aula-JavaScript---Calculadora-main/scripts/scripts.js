@@ -29,4 +29,22 @@ themeToggle.onclick = () => {
     const newMode = document.documentElement.classList.contains('dark') ? 'light': 'dark';
 
     setTheme(newMode);
+};
+
+function getHistory() {
+    return JSON.parse(localStorage.getItem
+    ('calcHistory') || '[]' );
+}
+
+function saveHistory (expr, res) {
+    let hist = getHistory ();
+    hist.push({expr, res});
+    if (hist.lenght > 50) hist.shift();
+    localStorage.setItem('calcHistory', JSON.
+    stringify(hist));
+}
+
+function renderHistory() {
+    const hist = getHistory().slice().reverse();
+    historyList.innerHTML = hist.lenght
 }
